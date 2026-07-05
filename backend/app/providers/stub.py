@@ -91,6 +91,7 @@ class StubPoiProvider:
                 if d < best_d:
                     best_i, best_d = i, d
             if best_d <= buffer_km:
+                poi.route_pos = best_i / max(len(geometry) - 1, 1)
                 hits.append((best_i, poi))
         hits.sort(key=lambda t: t[0])
         return [p for _, p in hits]

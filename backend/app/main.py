@@ -1,22 +1,34 @@
 """REST-API – jf. docs/mvp-spec.md kap. 4.
 
-Auth er utenfor skjelettet: alle kall opererer som én dev-bruker.
-Providere velges med ROUTING_PROVIDER=stub|valhalla (stub er default).
+Providere velges med miljøvariabler: ROUTING_PROVIDER=stub|valhalla,
+POI_PROVIDER=stub|postgis, GEOCODER=stub|kartverket.
+
+Auth: magic link (POST /auth/request-link → e-post med lenke →
+POST /auth/verify → Bearer-token). I AUTH_MODE=dev (default) faller kall
+uten token tilbake til en delt dev-bruker, og lenken logges i stedet for å
+sendes — sett AUTH_MODE=required + en ekte EmailSender i produksjon.
 """
 from __future__ import annotations
 
+import logging
 import os
+import secrets
 from contextlib import asynccontextmanager
+from datetime import timedelta
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from . import generator, models
 from .db import Base, engine, get_db
+from .models import utcnow
+from .providers.geocoder import KartverketGeocoder, StubGeocoder
 from .providers.stub import StubPoiProvider, StubRoutingProvider
 from .providers.valhalla import ValhallaRoutingProvider
+
+logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -48,15 +60,49 @@ def get_pois():
     return _poi_provider
 
 
-def get_current_user(db: Session = Depends(get_db)) -> models.User:
-    user = db.scalar(select(models.User).where(models.User.email == "dev@reiseliv.local"))
+def get_geocoder():
+    if os.environ.get("GEOCODER", "stub") == "kartverket":
+        return KartverketGeocoder()
+    return StubGeocoder()
+
+
+# ---------- Auth ----------
+
+class EmailSender:
+    """Byttes til ekte leverandør (f.eks. Resend/Postmark) i produksjon."""
+
+    def send_login_link(self, email: str, link: str) -> None:
+        logger.info("Magic link til %s: %s", email, link)
+
+
+_email_sender = EmailSender()
+
+
+def _get_or_create_user(db: Session, email: str) -> models.User:
+    user = db.scalar(select(models.User).where(models.User.email == email))
     if not user:
-        user = models.User(email="dev@reiseliv.local")
+        user = models.User(email=email)
         user.preferences = models.Preferences(vehicle={"type": "petrol"})
         db.add(user)
         db.commit()
         db.refresh(user)
     return user
+
+
+def get_current_user(
+    db: Session = Depends(get_db),
+    authorization: str | None = Header(default=None),
+) -> models.User:
+    if authorization and authorization.startswith("Bearer "):
+        token = authorization.removeprefix("Bearer ").strip()
+        session = db.scalar(
+            select(models.ApiSession).where(models.ApiSession.token == token))
+        if not session:
+            raise HTTPException(401, "Ugyldig eller utløpt token")
+        return db.get(models.User, session.user_id)
+    if os.environ.get("AUTH_MODE", "dev") == "dev":
+        return _get_or_create_user(db, "dev@reiseliv.local")
+    raise HTTPException(401, "Innlogging kreves")
 
 
 # ---------- Inn-skjemaer ----------
@@ -294,3 +340,52 @@ def search_pois(q: str = "", pois=Depends(get_pois)):
          "category": p.category, "price_level": p.price_level}
         for p in pois.search(q)
     ]
+
+
+@app.get("/geocode")
+def geocode(q: str = "", geocoder=Depends(get_geocoder)):
+    return [
+        {"name": h.name, "lat": h.lat, "lon": h.lon, "municipality": h.municipality}
+        for h in geocoder.search(q)
+    ]
+
+
+# ---------- Auth-endepunkter ----------
+
+class LoginRequest(BaseModel):
+    email: str = Field(pattern=r".+@.+\..+")
+
+
+class VerifyRequest(BaseModel):
+    token: str
+
+
+@app.post("/auth/request-link")
+def request_login_link(body: LoginRequest, db: Session = Depends(get_db)):
+    token = secrets.token_urlsafe(32)
+    db.add(models.LoginToken(
+        email=body.email.lower().strip(),
+        token=token,
+        expires_at=utcnow() + timedelta(minutes=15),
+    ))
+    db.commit()
+    link = f"{os.environ.get('APP_BASE_URL', 'http://localhost:5173')}/?login_token={token}"
+    _email_sender.send_login_link(body.email, link)
+    response: dict = {"sent": True}
+    if os.environ.get("AUTH_MODE", "dev") == "dev":
+        response["dev_link"] = link  # kun i dev: gjør flyten testbar uten e-post
+    return response
+
+
+@app.post("/auth/verify")
+def verify_login_token(body: VerifyRequest, db: Session = Depends(get_db)):
+    login = db.scalar(
+        select(models.LoginToken).where(models.LoginToken.token == body.token))
+    if not login or login.used or login.expires_at.replace(tzinfo=None) < utcnow().replace(tzinfo=None):
+        raise HTTPException(401, "Ugyldig eller utløpt innloggingslenke")
+    login.used = True
+    user = _get_or_create_user(db, login.email)
+    session_token = secrets.token_urlsafe(32)
+    db.add(models.ApiSession(user_id=user.id, token=session_token))
+    db.commit()
+    return {"token": session_token, "email": user.email}

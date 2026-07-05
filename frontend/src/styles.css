@@ -231,3 +231,272 @@ header p {
   color: #8a99a8;
   font-size: 0.8rem;
 }
+
+/* --- Faner, auth, stedssøk, preferanser, planliste, evaluering --- */
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.auth {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.auth input {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #c3ced8;
+  border-radius: 6px;
+}
+
+.auth button {
+  font: inherit;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid #c3ced8;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin: 1rem 0 1.25rem;
+  border-bottom: 2px solid #dde4ea;
+}
+
+.tabs button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 0;
+  background: none;
+  color: #5a6b7c;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tabs button.active {
+  color: #2456a8;
+  border-bottom-color: #2456a8;
+}
+
+.hint {
+  color: #5a6b7c;
+  font-size: 0.9rem;
+}
+
+.place-input {
+  position: relative;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0.2rem 0 0;
+  padding: 0.25rem;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #c3ced8;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(28, 39, 51, 0.12);
+}
+
+.suggestions button {
+  font: inherit;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+.suggestions button:hover {
+  background: #eef3f8;
+}
+
+.suggestions span {
+  color: #8a99a8;
+  font-size: 0.85rem;
+}
+
+.prefs {
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: grid;
+  gap: 1rem;
+  max-width: 620px;
+}
+
+.prefs h2 {
+  margin: 0;
+}
+
+.prefs fieldset {
+  border: 1px solid #e3e9ee;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.prefs legend {
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 0.35rem;
+}
+
+.prefs label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.prefs input,
+.prefs select {
+  font: inherit;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid #c3ced8;
+  border-radius: 6px;
+}
+
+.prefs label.checkbox {
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+.interest-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.prefs-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.prefs-actions button {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: #2456a8;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+}
+
+.saved {
+  color: #1d7a3f;
+  font-weight: 600;
+}
+
+.trips-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.trips-list th,
+.trips-list td {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid #eef2f5;
+}
+
+.trips-list th {
+  background: #f0f4f8;
+  font-size: 0.85rem;
+}
+
+.trips-list button {
+  font: inherit;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid #2456a8;
+  color: #2456a8;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.evaluation {
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.6rem;
+  max-width: 480px;
+}
+
+.evaluation.done {
+  color: #1d7a3f;
+  font-weight: 600;
+}
+
+.evaluation h3 {
+  margin: 0;
+}
+
+.evaluation .stars button {
+  font-size: 1.6rem;
+  border: 0;
+  background: none;
+  color: #c3ced8;
+  cursor: pointer;
+  padding: 0 0.15rem;
+}
+
+.evaluation .stars button.on {
+  color: #e8a13c;
+}
+
+.evaluation textarea {
+  font: inherit;
+  min-height: 4.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #c3ced8;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.evaluation button[type='submit'] {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: #2456a8;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  justify-self: start;
+}
+
+.evaluation button[type='submit']:disabled {
+  background: #9fb2c8;
+}

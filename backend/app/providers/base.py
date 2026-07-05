@@ -33,6 +33,10 @@ class PoiRecord:
     season_months: list[int] = field(default_factory=lambda: list(range(1, 13)))
     attributes: dict = field(default_factory=dict)
     description: str = ""
+    # Settes av PoiProvider.along_route: posisjon langs ruten, 0.0 (start)
+    # til 1.0 (mål). Brukes av dagsplanleggeren til geografisk riktig
+    # rekkefølge og tidsestimat for stoppene.
+    route_pos: float = 0.0
 
 
 class RoutingProvider(Protocol):

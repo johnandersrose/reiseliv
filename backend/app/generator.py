@@ -1,13 +1,20 @@
 """Genererer de tre rutevariantene og dag-for-dag-planen.
 
 Jf. docs/mvp-spec.md kap. 3: samme pipeline, tre målfunksjoner.
-Konfliktregler (spec kap. 2): harde begrensninger brytes aldri; budsjett
-flagges, men stopper ikke generering.
+Konfliktregler (spec kap. 2): harde begrensninger (kjøretid per etappe,
+dagstider) brytes aldri; budsjett flagges, men stopper ikke generering.
+
+Dagsplanleggingen er geografisk: hvert stopp har en posisjon langs ruten
+(PoiRecord.route_pos), stoppene legges i kjøreretning, og ankomsttidene
+beregnes fra andelen av dagens kjøretid frem til stoppet. Stopp som ikke
+rekkes innenfor dagens sluttid droppes. POI-er utenfor sesong for den
+aktuelle reisedagen filtreres bort.
 """
 from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from datetime import date, timedelta
 
 from sqlalchemy.orm import Session
 
@@ -77,7 +84,7 @@ def pick_candidates(
 
 
 def _hhmm(minutes: int) -> str:
-    return f"{minutes // 60:02d}:{minutes % 60:02d}"
+    return f"{int(minutes) // 60:02d}:{int(minutes) % 60:02d}"
 
 
 def _mins(hhmm: str) -> int:
@@ -94,6 +101,35 @@ def _split_geometry(geometry: list, parts: int) -> list[list]:
         b = round((i + 1) * (n - 1) / parts)
         out.append(geometry[a : b + 1])
     return out
+
+
+def _month_for_day(start_date: str, day_index: int) -> int:
+    try:
+        return (date.fromisoformat(start_date) + timedelta(days=day_index)).month
+    except ValueError:
+        return 7  # ugyldig dato: anta høysesong fremfor å feile
+
+
+def _pick_day_stops(
+    pool: list[PoiRecord], is_last_day: bool, used: set[str]
+) -> list[tuple[PoiRecord, str]]:
+    """Velg dagens stopp fra korridor-poolen: aktivitet, mat og overnatting."""
+    picks: list[tuple[PoiRecord, str]] = []
+
+    def take(categories: tuple[str, ...], stop_kind: str, key=None):
+        options = [p for p in pool if p.category in categories and p.id not in used]
+        if not options:
+            return
+        poi = max(options, key=key) if key else options[0]
+        used.add(poi.id)
+        picks.append((poi, stop_kind))
+
+    take(("activity", "sight"), "activity")
+    take(("food",), "food")
+    if not is_last_day:
+        # Overnatting nærmest dagens endepunkt, så neste dag starter riktig.
+        take(("lodging",), "lodging", key=lambda p: p.route_pos)
+    return picks
 
 
 def build_variant(
@@ -116,6 +152,7 @@ def build_variant(
     day_drive_mins = candidate.drive_mins // days
 
     corridor = pois.along_route(candidate.geometry, CORRIDOR_BUFFER_KM, [])
+
     # Interessefilter for aktiviteter (PREF-06); øvrige kategorier beholdes.
     def _matches_interests(p: PoiRecord) -> bool:
         if p.category not in ("activity", "sight") or not interests:
@@ -123,7 +160,6 @@ def build_variant(
         return not p.subcategory or p.subcategory in interests
 
     available = [p for p in corridor if p.id not in excluded and _matches_interests(p)]
-    per_day = _split_geometry([p.id for p in available], days) if available else [[]] * days
     by_id = {p.id: p for p in available}
     locked_here = [ls for ls in locked if ls.variant_kind == kind]
 
@@ -143,7 +179,10 @@ def build_variant(
     if candidate.ferry_nok:
         db.add(models.CostItem(variant=variant, kind="ferry", amount_nok=candidate.ferry_nok))
 
+    day_start = _mins(prefs.day_start)
+    day_end = _mins(prefs.day_end)
     used_ids: set[str] = set()
+
     for day in range(days):
         leg = models.Leg(
             variant=variant,
@@ -157,70 +196,70 @@ def build_variant(
         db.add(models.CostItem(variant=variant, leg=leg, kind="fuel", amount_nok=leg_fuel))
         total_cost += leg_fuel
 
-        day_pool = [by_id[i] for i in per_day[day] if i in by_id and i not in used_ids]
+        # Dagens korridorsegment + sesongfilter for akkurat denne reisedagen.
+        frac_lo, frac_hi = day / days, (day + 1) / days
+        month = _month_for_day(trip.start_date, day)
+        pool = [
+            p for p in available
+            if p.id not in used_ids
+            and frac_lo <= p.route_pos < frac_hi
+            and (not p.season_months or month in p.season_months)
+        ]
 
-        def take(category: str, fallback: str | None = None) -> PoiRecord | None:
-            for pool_cat in filter(None, [category, fallback]):
-                for p in day_pool:
-                    if p.category == pool_cat and p.id not in used_ids:
-                        used_ids.add(p.id)
-                        return p
-            return None
+        picks = _pick_day_stops(pool, is_last_day=(day == days - 1), used=used_ids)
 
-        clock = _mins(prefs.day_start)
+        # Låste stopp (BRUK-12) gjeninnsettes med sin posisjon langs ruten.
+        for ls in locked_here:
+            if ls.day_index == day and ls.poi_id not in {p.id for p, _ in picks}:
+                poi = by_id.get(ls.poi_id)
+                if poi is None:
+                    poi = PoiRecord(
+                        id=ls.poi_id, name=ls.poi_id, lat=0, lon=0,
+                        category=ls.kind, route_pos=frac_lo,
+                    )
+                used_ids.add(poi.id)
+                picks.append((poi, ls.kind))
+
+        # Geografisk skedulering: kjør, stopp, kjør videre — i kjøreretning.
+        def rel(p: PoiRecord) -> float:
+            return min(1.0, max(0.0, (p.route_pos - frac_lo) * days))
+
+        clock = float(day_start)
+        prev_rel = 0.0
         order = 0
-        day_end = _mins(prefs.day_end)
-
-        # Låste stopp (BRUK-12/PREF-22-forløper) legges inn først.
-        for ls in [l for l in locked_here if l.day_index == day]:
+        # Overnatting avslutter alltid dagen, uansett posisjon langs ruten.
+        scheduled = sorted(picks, key=lambda t: (t[1] == "lodging", rel(t[0])))
+        for poi, stop_kind in scheduled:
+            arrival = clock + day_drive_mins * max(rel(poi) - prev_rel, 0.0)
+            duration = poi.duration_mins or 60
+            is_locked = any(
+                ls.day_index == day and ls.poi_id == poi.id for ls in locked_here
+            )
+            if stop_kind != "lodging" and arrival + duration > day_end and not is_locked:
+                continue  # rekkes ikke i dag – hard begrensning, hopp over
+            departure = prefs.day_start if stop_kind == "lodging" else _hhmm(arrival + duration)
             db.add(
                 models.Stop(
-                    leg=leg, poi_id=ls.poi_id, kind=ls.kind,
-                    arrival=_hhmm(clock), departure=_hhmm(clock + 60),
-                    locked=True, order=order,
+                    leg=leg, poi_id=poi.id, kind=stop_kind,
+                    arrival=_hhmm(min(arrival, day_end)), departure=departure,
+                    locked=is_locked, order=order,
                 )
             )
-            used_ids.add(ls.poi_id)
-            clock += 60
             order += 1
-
-        half_drive = day_drive_mins // 2
-        clock += half_drive  # formiddagskjøring
-
-        for slot_kind, category, fallback in (
-            ("activity", "activity", "sight"),
-            ("food", "food", None),
-        ):
-            poi = take(category, fallback)
-            if poi and clock + poi.duration_mins <= day_end:
-                db.add(
-                    models.Stop(
-                        leg=leg, poi_id=poi.id, kind=slot_kind,
-                        arrival=_hhmm(clock), departure=_hhmm(clock + poi.duration_mins),
-                        locked=False, order=order,
-                    )
-                )
-                clock += poi.duration_mins
-                order += 1
-                if poi.category in ("activity", "sight"):
-                    cost = poi.price_level * ACTIVITY_NOK_PER_LEVEL * prefs.party_adults
-                    db.add(models.CostItem(
-                        variant=variant, leg=leg, kind="activity", amount_nok=cost))
-                    total_cost += cost
-
-        clock = min(clock + (day_drive_mins - half_drive), day_end)  # ettermiddagskjøring
+            prev_rel = rel(poi)
+            clock = arrival if stop_kind == "lodging" else arrival + duration
+            if poi.category in ("activity", "sight"):
+                cost = poi.price_level * ACTIVITY_NOK_PER_LEVEL * prefs.party_adults
+                db.add(models.CostItem(
+                    variant=variant, leg=leg, kind="activity", amount_nok=cost))
+                total_cost += cost
 
         if day < days - 1:  # overnatting alle netter unntatt siste dag
-            lodging = take("lodging")
-            night = LODGING_NIGHT_NOK.get(lodging.price_level if lodging else 2, 1200)
-            if lodging:
-                db.add(
-                    models.Stop(
-                        leg=leg, poi_id=lodging.id, kind="lodging",
-                        arrival=_hhmm(clock), departure=prefs.day_start,
-                        locked=False, order=order,
-                    )
-                )
+            lodging_poi = next(
+                (p for p, k in picks if k == "lodging"), None
+            )
+            night = LODGING_NIGHT_NOK.get(
+                lodging_poi.price_level if lodging_poi else 2, 1200)
             db.add(models.CostItem(variant=variant, leg=leg, kind="lodging", amount_nok=night))
             total_cost += night
 

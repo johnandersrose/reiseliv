@@ -28,6 +28,7 @@ def _record(row) -> PoiRecord:
         id=row[0], name=row[1], lat=row[2], lon=row[3], category=row[4],
         subcategory=row[5], price_level=row[6], duration_mins=row[7],
         attributes=attributes or {}, description=row[9] or "",
+        route_pos=float(row[10] or 0.0),
     )
 
 

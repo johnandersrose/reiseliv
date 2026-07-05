@@ -142,3 +142,22 @@ class Evaluation(Base):
     text: Mapped[str] = mapped_column(Text, default="")
 
     trip_plan: Mapped[TripPlan] = relationship(back_populates="evaluation")
+
+
+class LoginToken(Base):
+    """Engangstoken for magic link-innlogging (BRUK-09)."""
+    __tablename__ = "login_tokens"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    email: Mapped[str] = mapped_column(String)
+    token: Mapped[str] = mapped_column(String, unique=True)
+    expires_at: Mapped[datetime] = mapped_column()
+    used: Mapped[bool] = mapped_column(Boolean, default=False)
+
+
+class ApiSession(Base):
+    """Bearer-token for innloggede brukere."""
+    __tablename__ = "api_sessions"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    token: Mapped[str] = mapped_column(String, unique=True)
+    created_at: Mapped[datetime] = mapped_column(default=utcnow)

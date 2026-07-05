@@ -41,5 +41,11 @@ Ekte rutemotor: kjør `infra/setup.sh` (lokal maskin med Docker), deretter
 - [x] Ruteberikelse: bom (NVDB 45), ferge og scenic-score (turistveg-match) — koblet i Valhalla-provideren; `backend/scripts/fetch_nvdb_data.py` henter ekte data lokalt
 - [x] POI-import: OSM → PostGIS (`backend/scripts/import_pois_osm.py`, tag-mapping enhetstestet) + `PostgisPoiProvider` (`POI_PROVIDER=postgis`)
 - [x] Frontend: React + MapLibre med hele 3-varianter-flyten (verifisert med skjermbilde mot kjørende backend)
-- [ ] Kjør lokalt med Docker: `infra/setup.sh`, `fetch_nvdb_data.py`, `import_pois_osm.py` — valider kjeden mot ekte Valhalla/PostGIS
-- [ ] Auth (magic link, BRUK-09) og deploy
+- [x] Geokoding: Kartverket stedsnavn-API bak provider (`GEOCODER=kartverket`), stedssøk i frontend
+- [x] Planlegger v2: geografisk skedulering av stopp (posisjon langs ruten → monotone tider innenfor dagstidene) + sesongfilter per reisedag
+- [x] Auth: magic link (`/auth/request-link` → `/auth/verify` → Bearer). `AUTH_MODE=dev` (default) logger lenken og har dev-bruker-fallback; produksjon trenger e-postleverandør bak `EmailSender`
+- [x] UI: preferanseskjema, «Mine planer», evaluering etter tur, innlogging — alt skjermbildeverifisert
+- [x] CI: GitHub Actions (backend-tester + frontend typecheck/build)
+- [ ] **Kvalitetssikring (menneske):** se på genererte planer og gi tilbakemelding
+- [ ] **Lokal kjøring med Docker (menneske + Claude Code lokalt):** `infra/setup.sh`, `fetch_nvdb_data.py`, `import_pois_osm.py` → valider mot ekte Valhalla/PostGIS/Kartverket
+- [ ] Deploy: hosting, kartflis-URL (`VITE_MAP_STYLE_URL`), e-postleverandør, `AUTH_MODE=required`
