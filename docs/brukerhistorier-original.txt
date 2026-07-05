@@ -1,0 +1,191 @@
+Brukerhistorier:
+Personlige preferanser
+Som førstegangsbruker vil jeg kunne registrere en personlig profil med informasjon om alder, kjønn og familie, slik at løsningen kan tilpasse reiseforslagene mine.
+Som bruker som planlegger tur for par vil jeg at løsningen skal gi meg mulighet til å markere at vi er par uten barn, slik at jeg får forslag til attraksjoner, spisesteder og overnatting som er rolige, romantiske og særlig tilrettelagt for pår
+Som bruker som skal planlegge tur med familien vil jeg kunne angi antall barn og deres alder, slik at forslagene inkluderer barnevennlige aktiviteter og overnattingssteder tilpasset barnas alder.
+Som hundeeier vil jeg kunne markere at jeg reiser med hund, slik at jeg får forslag til hundevennlige overnattingssteder, aktiviteter og rasteplasser.
+Som eventyrlysten bruker vil jeg kunne velge hvilke typer aktiviteter jeg foretrekker, slik at reiseplanen inkluderer spennende opplevelser og «skjulte perler».
+Som bruker vil jeg kunne filtrere reiseforslag etter type aktivitet (f.eks. natur, kultur, sport), slik at jeg får en reise som passer mine interesser.
+Som bruker vil jeg kunne prioritere de mest populære reiseforslagene, slik at jeg får et effektivt planleggingsverktøy.
+Som bruker vil jeg ha muligheten til å sammenligne alternative reiseruter, slik at jeg kan velge den mest optimale turen.
+Som bruker uten definerte preferanser vil jeg få opp tre ulike versjoner av reisen: «raskeste», «billigste» og «vakreste», slik at jeg kan velge den ruten som passer meg best
+Som bruker uten barn vil jeg ha muligheten til å få forslag til barnefri reise, slik at jeg kan slippe å feriere med andres barn.
+Som tilbakevendende bruker vil jeg at løsningen skal huske mine tidligere preferanser og dispreferanser, slik at fremtidige reisetilbud blir enda mer tilpasset
+Som bruker vil jeg kunne lagre favorittreiseforslag, slik at jeg enkelt kan hente dem opp ved senere anledninger.
+Som bruker vil jeg kunne sette prioriteringer mellom aktiviteter, slik at løsningen forstår hva som er viktigst for meg.
+Som bruker vil jeg at reiseplanleggeren skal gi meg forslag til naturskjønne ruter, slik at jeg kan oppleve Norges vakre landskap.
+Som bruker vil jeg ha muligheten til å se anmeldelser av overnattingssteder og aktiviteter, slik at jeg kan gjøre informerte valg.
+Som bruker vil jeg ha muligheten til å gi anmeldelser av overnattingssteder og aktiviteter, slik at jeg kan få bedre tilpassede forslag ved neste bruk
+Som bruker vil jeg kunne motta forslag basert på tidligere bookede turer, slik at løsningen lærer av mine preferanser.
+Som bruker vil jeg kunne motta forslag til spisesteder langs reiseruten, slik at jeg får et komplett reiseopplegg.
+Som bruker vil jeg at løsningen skal foreslå aktiviteter basert på mitt interessefelt, slik at opplevelsene mine blir mer relevante.
+Som bruker vil jeg motta forslag om lokale arrangementer og festivaler, slik at jeg kan få med meg spennende opplevelser.
+Som bruker vil jeg at løsningen skal gi mulighet til å angi maksimal tid i bil på hver etappe, slik at reisen blir tilpasset behovene til de reisende. 
+Som bruker vil jeg kunne markere aktiviteter som “må oppleves”, slik at løsningen prioriterer disse i forslaget.
+Som bruker vil jeg ha en funksjon for å vurdere og gi tilbakemelding på reiseforslagene, slik at løsningen lærer og forbedrer seg.
+Som bruker vil jeg kunne lagre favorittdestinasjoner, slik at jeg raskt kan få nye forslag til liknende steder.
+Som bruker vil jeg at løsningen skal huske mine preferanser for type overnatting (f.eks. hotell, hytte, camping), slik at forslagene matcher mine ønsker.
+Som narturinteressert bruker vil jeg at løsningen skal foreslå hvilesteder og utsiktspunkter langs ruten, slik at jeg får en mer naturskjønn opplevelse
+Som bruker vil jeg at løsningen registrerer hvilke aktiviteter, overnattingssteder og spisesteder som velges vekk, slik at løsningen lærer mine preferanser for fremtidige forslag.
+Som naturinteressert bruker vil jeg at løsningen skal gi forslag til naturskjønne rasteplasser, slik at jeg får behagelige stopp.
+Som bruker vil jeg kunne velge opphold med frokost inkludert, slik at jeg får en enklere reiseopplevelse.
+Som bruker vil jeg kunne legge inn starttid og sluttid per dag, slik at reiseruten tar hensyn til når man ønsker å starte og slutte de enkelte dagene på reisen
+Som bruker vil jeg ha en funksjon for å rangere aktiviteter, slik at jeg senere kan få mer presise forslag basert på mine rangeringer.
+Som bruker med familie vil jeg kunne se forslag til aktiviteter som passer for både voksne og barn, slik at hele familien får en god opplevelse.
+Som bruker vil jeg at løsningen skal foreslå kortere eller lengre aktiviteter avhengig av hvor mye tid jeg har mellom stoppene, slik at reiseplanen tilpasses effektivt.
+Som bruker vil jeg kunne få forslag til reiseruter som kombinerer både populære og skjulte perler, slik at jeg får en variert opplevelse.
+Som bruker vil jeg kunne markere og lagre enkelte aktiviteter som «interessante», slik at de kan vurderes på nytt ved senere søk.
+Som bruker vil jeg at løsningen skal huske mine tidligere valg ved endringer, slik at reiseforslagene stadig blir mer presise.
+Som bruker vil jeg kunne se en oversikt over reisehistorikk med tilbakemeldinger og karakterer, slik at jeg kan lære av mine tidligere opplevelser.
+Som bruker vil jeg kunne velge “temareiser” (f.eks. natur, kultur, gastronomi), slik at jeg får forslag som matcher mine hovedinteresser.
+Som bruker vil jeg kunne se en oversikt over hvilke tjenester som tilbys langs ruten (f.eks. bensinstasjoner, restauranter), slik at jeg får en helhetlig plan.
+Som en bedagelig bruker vil jeg at løsningen skal gi forslag basert på om jeg foretrekker en rolig eller en mer aktiv reise, slik at forslaget matcher min livsstil.
+Som reisevant bruker vil jeg at løsningen skal foreslå “hemmelige perler” og mindre kjente aktiviteter, slik at jeg får oppdage nye steder i Norge.
+
+Inspirasjon
+Som bruker vil jeg at løsningen skal vise reisetips og råd fra eksperter, slik at jeg føler meg trygg på mine valg.
+Som bruker vil jeg kunne se hvilke aktiviteter som er mest populære blant andre reisende, slik at jeg kan få inspirasjon til mitt eget valg.
+Sosialt ansvar
+Som bruker vil jeg ha muligheten til å filtrere forslag etter tilgjengelighet for funksjonshemmede, slik at reiseplanene er inkluderende.
+Som bruker vil jeg ha LHBT-vennlige hotell og restauranter
+Som klimabevisst bruker vil jeg kunne klimakompensere for reisen min, slik at jeg kan være trygg på at reisen min er klimanøytral
+Kultur
+Som kulturinteressert bruker vil jeg at løsningen skal gi forslag til kulturelle opplevelser, slik at jeg kan kombinere reise med kulturopplevelser.
+Som kulturinteressert bruker vil jeg at løsningen gi mulighet til å få opp opplevelser basert på regionale tradisjoner og festivaler, slik at jeg kan få et autentisk innblikk i lokalkulturen.
+Vær og sesong
+Som bruker vil jeg kunne se forslag basert på sesong og værforhold, slik at jeg får de beste anbefalingene for tidspunktet. 
+Som bruker vil jeg at løsningen skal integrere værmeldinger, slik at jeg kan forberede meg på ulike værforhold
+Som bruker vil jeg at løsningen skal advare mot utendørsaktiviteter når det er dårlig vær, slik at jeg kan ta hensyn til det i planleggingen 
+Som bruker vil jeg kunne motta varsler om lokale værforhold underveis, slik at jeg kan justere planene i tide. 
+Som bruker vil jeg ha muligheten til å se hvilke aktiviteter som er sesongbaserte, slik at jeg får forslag som er aktuelle for tidspunktet
+Som bruker vil jeg at løsningen skal kunne justere forslagene dersom været endrer seg plutselig, slik at jeg kan finne innendørs alternativer ved dårlig vær.
+Elbil
+Som bruker med elbil vil jeg få forslag til reiserute basert på min elbils rekkevidde, slik at jeg ikke trenger å bekymre meg for å gå tom for strøm
+Som bruker med elbil vil jeg kunne legge inn hvilke ladeavtaler jeg har, slik at reisen prioriterer de ladestasjonene som inngår i mine avtaler. 
+Som bruker med elbil vil jeg kunne se et forslag til pauser og ladestasjoner for bilen, slik at turen blir behagelig og trygg.
+Som bruker med elbil vil jeg at løsningen skal vise tilgjengelige ladestasjoner for elbil, slik at jeg kan planlegge lading underveis.
+
+Økonomi og budsjett
+Som prisbevisst bruker vil jeg kunne angi et reisebudsjett, slik at forslagene holdes innenfor mine økonomiske rammer.
+Som prisbevisst bruker vil jeg motta varsler om prisendringer på bookinger, slik at jeg kan sikre de beste tilbudene.
+Som prisbevisst bruker vil jeg at løsningen skal komme med forslag til alternative reiseruter og tidspunkt, slik at jeg kan reise de rutene og tidspunktene som er billigst.
+Som prisbevisst bruker som har lagt inn preferanser og har fått generert et forslag til reiserute vil jeg kunne se en oversikt over drivstoffkostnadene i budsjettet basert på ruten, slik at jeg kan planlegge økonomien bedre.
+Som bruker som har lagt inn preferanser og har fått generert et forslag til reiserute vil jeg at løsningen skal gi en oversikt over fergepriser og bompenger, slik at jeg kan planlegge reiseutgiftene nøyaktig.
+Som dieselbilbruker på reise vil jeg hver dag, ved starten av reisen, få et varsel om hvor på ruten det er billigst diesel, slik at jeg kan planlegge påfyll av drivstoff
+Som bensinbilbruker på reise vil jeg hver dag, ved starten av reisen, få et varsel om hvor på ruten det er billigst bensin, slik at jeg kan planlegge påfyll av drivstoff
+Som elbilbruker vil jeg få oversikt over pris på lading, slik at jeg kan vurdere hvilke ladeløsninger jeg ønsker å bruke
+Som bruker vil jeg kunne samle kvitteringene i løsningen, slik at jeg har alle kvitteringene ett sted.
+Som bruker vil jeg kunne eksportere kvitteringene som bildefil, slik at de kan brukes til reiseregninger eller i et regnskapsprogram 
+Som bruker vil jeg kunne se en integrert oversikt over kostnader for hver del av turen, slik at jeg enkelt kan følge med på budsjettet.
+Som bruker vil jeg at løsningen skal gi en oversikt over tilgjengelige rabatter og kampanjer, slik at jeg kan velge de løsningene som gir størst besparelse.
+Som bruker vil jeg kunne motta tilpassede forslag basert på sesongrelaterte spesialtilbud, slik at jeg drar nytte av rabatter og kampanjer.
+Som bruker vil jeg kunne se et estimat på totale utgifter for hele turen, slik at jeg får en helhetlig oversikt over budsjettet.
+Som bruker på reise vil jeg at løsningen skal vise en dynamisk oversikt over reisebudsjettet mitt, slik at jeg enkelt kan følge med på kostnadene underveis.
+Som bruker vil jeg at løsningen skal tilby et “billigste”-alternativ for de som ønsker å prioritere økonomiske løsninger, slik at jeg kan få det billigste alternativet
+Som bruker vil jeg kunne se en historikk over rabatter og tilbud jeg har mottatt, slik at jeg kan følge med på mine fordeler.
+Som bruker vil jeg ha mulighet til at løsningen skal foreslå flere reisealternativer basert på ulike prisklasser, slik at jeg kan velge det som passer min økonomi best.
+Som bruker som reiser alene vil jeg at løsningen skal gi meg aktiviteter, overnattinger og spisesteder som er billigere for de som reiser alene, slik jeg sparer penger.
+Som bruker som reiser alene med ønske om å bli kjent med andre vil jeg at løsningen skal gi meg aktiviteter og overnattinger med fellesområder eller tilpasset for brukergruppen
+Brukervennlighet
+Som bruker vil jeg kunne gjøre endringer i aktiviteter direkte i løsningen, slik at nye forslag automatisk genereres.
+Som bruker vil jeg at løsningen raskt skal vise tilgjengelige overnattingsmuligheter langs ruten, slik at jeg kan planlegge uten forsinkelser.
+Som ny bruker vil jeg ha en kort introduksjon eller veiledning, slik at jeg raskt forstår hvordan jeg setter opp min reiseprofil.
+Som bruker vil jeg kunne se en oversikt over alle bookinger og referansenummer, slik at jeg har full kontroll over mine bestillinger.
+Som bruker vil jeg at løsningen skal vise tilgjengelighet og pris på overnattinger i sanntid, slik at jeg kan gjøre raske bookinger.
+Som bruker vil jeg ha en integrert kalender som viser alle aktiviteter og overnattinger, slik at jeg får en samlet oversikt.
+Som bruker vil jeg kunne motta varsler om endringer i planlagte aktiviteter, slik at jeg alltid er oppdatert.
+Som bruker vil jeg kunne integrere løsningen med mine eksisterende kalendere (f.eks. Google Kalender), slik at reiseplanen min legges inn automatisk.
+Som ny bruker vil jeg ha en enkel registreringsprosess med sosiale medie-integrasjoner, Google-integrasjon og Apple-integrasjon, slik at jeg raskt kan komme i gang.
+Som bruker vil jeg at løsningen automatisk skal foreslå alternative aktiviteter ved kanselleringer, slik at reisen min ikke blir ødelagt.
+Som bruker vil jeg at løsningen skal integrere med karttjenester, slik at jeg kan se nøyaktige ruter og avstander.
+Som bruker vil jeg ha muligheten til å tilpasse reiseplanen manuelt, slik at jeg kan gjøre endringer utover de automatisk genererte forslagene.
+Som bruker som allerede har booket en reise vil jeg kunne endre reiseplanen med et par tastetrykk, slik at jeg raskt kan tilpasse turen dersom planene endres.
+Som bruker vil jeg ha tilgang til en “min reisehistorikk”-funksjon, slik at jeg kan se alle tidligere turer og lære av erfaringene.
+Som bruker vil jeg at løsningen automatisk skal justere forslagene dersom en aktivitet er fullbooket, slik at jeg alltid har et gyldig alternativ.
+Som bruker vil jeg kunne søke på spesifikke destinasjoner, slik at jeg kan planlegge turer også uten bilkjøring
+Som bruker vil jeg kunne lagre flere reiseplaner samtidig, slik at jeg kan veksle mellom ulike forslag før jeg bestemmer meg.
+Som bruker vil jeg at løsningen skal kunne tilpasses både som web- og mobilapplikasjon med en felles brukerprofil, slik at jeg har tilgang uansett plattform.
+Som bruker vil jeg kunne se tilgjengelighet for aktiviteter i sanntid, slik at jeg unngår å booke noe som ikke er tilgjengelig.
+Som bruker vil jeg kunne motta påminnelser om kommende bookingfrister, slik at jeg ikke går glipp av gode tilbud.
+Som bruker vil jeg ha tilgang til en “reise-sjekkliste”, slik at jeg husker alt jeg trenger å gjøre før avreise.
+Som bruker vil jeg kunne planlegge reiseruter med flere destinasjoner, slik at jeg får en variert og rik turopplevelse.
+Som bruker vil jeg at løsningen skal ta hensyn til de tidspunktene det er mange reisende som besøker de foreslåtte rasteplassene, slik at det er mulig å unngå de mest hektiske tidspunktene på rasteplassene
+Som bruker vil jeg at løsningen skal integrere med tredjepartstjenester for hotellbooking, slik at jeg får flere alternativer.
+Som bruker vil jeg kunne legge til personlige notater i reiseplanen, slik at jeg husker viktige detaljer før avreise.
+Som bruker som allerede har booket en reise vil jeg at løsningen skal gi meg varsler om eventuelle kanselleringer i tide, slik at jeg kan finne alternative løsninger.
+Som bruker vil jeg kunne endre reiseplanen med et enkelt sveip eller klikk, slik at det er brukervennlig og intuitivt.
+Som bruker vil jeg ha muligheten til å lagre og hente opp flere reiseplaner for å sammenligne ulike alternativer før jeg bestemmer meg.
+Som bruker vil jeg at løsningen skal integrere med CarPlay, slik at jeg får en helhetlig reiseopplevelse.
+Som bruker vil jeg kunne motta automatiske påminnelser om når det er på tide å booke reisen, slik at jeg unngår siste-liten stress.
+
+Betaling
+Som bruker vil jeg kunne lagre mine personlige innstillinger for betalingsmåte og valuta, slik at løsningen alltid tilbyr meg relevante betalingsalternativer.
+Som bruker vil jeg at løsningen skal vise en oversikt over alle betalingsmetoder jeg kan benytte, slik at jeg kan velge min foretrukne metode.
+Som bruker vil jeg kunne integrere mine betalingskort sikkert i løsningen, slik at booking og betaling går sømløst.
+
+Smidig reise
+Som bruker vil jeg at løsningen skal foreslå aktiviteter med kort ventetid, slik at jeg slipper lange pauser i reiseplanen.
+Som bruker vil jeg at løsningen skal gi meg muligheten til å reservere plass til aktiviteter på forhånd, slik at jeg sikrer meg plass.
+Som bruker vil jeg at løsningen skal gi forslag basert på reisetidspunkt (f.eks. helg vs. ukedag), slik at jeg får et optimalt forslag.
+Som bruker vil jeg at løsningen skal foreslå aktiviteter i nærheten av min reiserute, slik at jeg slipper lange reiseavstander.
+Som bruker vil jeg at løsningen skal ta hensyn til min reisetid, slik at forslagene til aktiviteter tilpasses hvor mye tid jeg har.
+Som bruker vil jeg at løsningen skal tilpasse forslaget basert på hvor lang turen skal være, slik at reiseplanen er realistisk.
+Som bruker vil jeg at løsningen skal vise et estimat for total reisetid, slik at jeg kan planlegge dagene mine bedre.
+Som bruker vil jeg at løsningen skal gi meg en “beste tid å reise”-anbefaling basert på trafikk og sesong, slik at turen min blir så smidig som mulig.
+Som bruker vil jeg at løsningen skal foreslå aktiviteter i nærheten av populære turistmål, slik at jeg kan kombinere kjente attraksjoner med lokale perler.
+Som bruker vil jeg at løsningen skal foreslå aktiviteter som tar hensyn soloppgang og solnedgang, slik at jeg opplever optimale forhold.
+
+På reisen
+Som bruker vil jeg kunne motta push-varsler om endringer i ruteplanen min, slik at jeg alltid er oppdatert på eventuelle endringer.
+Som bruker vil jeg kunne se en oversikt over tilgjengelige parkeringsmuligheter ved overnattingsstedene, slik at jeg slipper å lete etter parkering.
+Som bruker på reise vil jeg daglig motta en detaljert reiseplan for dagen med tidsestimater for hver aktivitet, slik at jeg kan planlegge dagen nøye.
+
+
+Navigasjon
+Som bruker på reise vil jeg ha en navigasjonsløsning i løsningen, slik at jeg vet hvor lang tid og avstand det er til neste stopp og hvordan jeg skal kjøre for å komme meg dit
+Som bruker på reise vil jeg at løsningen skal foreslå alternative ruter ved trafikk eller veiarbeid, slik at reisen blir smidig.
+Som bruker på reise vil jeg at løsningen skal vise alternative ruter basert på sanntids trafikkdata, slik at jeg unngår forsinkelser.
+Som bruker på reise vil jeg at løsningen skal gi en oversikt over milepæler under reisen (f.eks. antall kjørte kilometer), slik at jeg kan følge med på fremgangen.
+
+Visuell fremstilling
+Som bruker vil jeg ha en grafisk fremstilling av reiseruten, slik at jeg enkelt får oversikt over hele turen.
+Som bruker vil jeg kunne se en tidslinje for hele reisen, slik at jeg får en oversikt over rekkefølgen på aktiviteter og overnattinger.
+Som bruker vil jeg kunne se detaljerte beskrivelser av hver aktivitet, slik at jeg forstår hva som inngår og hva jeg kan forvente.
+Som bruker vil jeg at løsningen skal vise bilder og gjerne videoer av overnattingssteder og aktiviteter, slik at jeg visuelt kan vurdere kvaliteten.
+Som bruker vil jeg ha muligheten til å veksle mellom ulike visningsmoduser (f.eks. listevisning, kartvisning), slik at jeg kan velge den oversikten som passer meg best.
+Som bruker vil jeg at løsningen skal tilby en “nattmodus” med et mørkt grensesnitt, slik at jeg får en behagelig visuell opplevelse ved nattlig bruk.
+
+Abonnement:
+Som abonnent vil jeg få tilgang til premium funksjoner, slik at jeg får en enda mer personlig tilpasset reiseopplevelse og tilgang til rabatter og tilbud.
+Som kunde vil jeg kunne velge mellom månedlig og årlig abonnement, slik at jeg kan tilpasse betalingsplanen etter mine behov.
+
+Kundeservice 
+Som bruker vil jeg kunne kontakte kundeservice direkte via løsningen, slik at jeg raskt får hjelp ved problemer.
+Som bruker vil jeg at løsningen skal vise detaljert kontaktinformasjon for overnattingssteder, aktiviteter og spisesteder, slik at jeg enkelt kan kontakte dem ved behov.
+Som bruker vil jeg at løsningen skal tilby en chatbot som “reisehjelp” som svarer på vanlige spørsmål, slik at jeg får rask hjelp uten å måtte kontakte kundeservice.
+
+Delbarhet
+Som bruker vil jeg kunne dele mine reiseplaner med familie eller venner, slik at de kan gi tilbakemelding før jeg booker.
+Som bruker vil jeg kunne eksportere reiseplanen til PDF, slik at jeg har den tilgjengelig offline.
+Som bruker vil jeg kunne eksportere budsjettet som en CSV.-fil slik at jeg kan ha den tilgjengelig offline
+Som bruker vil jeg ha muligheten til å integrere reiseplanen med sosiale medieplattformer, slik at jeg kan dele planene mine med venner.
+Som bruker vil jeg kunne integrere reiseforslagene med reiseblogger og sosiale medier, slik at jeg kan se andres erfaringer.
+Som bruker vil jeg ha muligheten til å dele reiseplanen direkte med andre via e-post eller sosiale medier, slik at jeg får andres tilbakemelding.
+
+Inntektsstrømmer for løsningen
+Som reiseplanlegger vil jeg gi mulighet til å promotere aktiviteter, overnattinger og spisesteder, slik at løsningen genererer inntekter på promotering.
+Som reiseplanlegger vil jeg gi mulighet til å gi tilbud og rabatter direkte i reisen, slik at det kan lønne seg å være abonnent.
+Som reiseplanlegger vil jeg kunne integrere betalingsløsninger direkte i løsningen, slik at booking og betaling blir en sømløs prosess.
+Som reiseplanlegger vil jeg kunne motta cashback for bookinger, slik at jeg får økonomisk tilbakebetaling for reiselivsaktørene.
+
+Gruppe
+Som bruker som planlegger gruppereise vil jeg kunne legge til andre brukere i et reisefølge, slik at løsningen også tar hensyn til deres preferanser når den genererer forslag til reiseplan.
+Som bruker som har gjennomført betaling for gruppereise vil jeg enkelt kunne dele opp betalingen og sende betalingskrav til de andre brukerne, slik at jeg enkelt kan dele og følge opp betalingen mellom alle reisende
+Som bruker som har gjennomført betaling for gruppereise vil jeg at løsningen skal purre opp betaling fra resten av reisefølge dersom de har glemt å betale innen en uke, slik at jeg selv slipper å følge opp innbetalingene
+Som bruker som planlegger gruppereise vil jeg at løsningen skal vise muligheter for gruppebookinger, slik at jeg enkelt får tilgang til relevante tilbud og rabatter.
+
+Datafangst
+Som bruker som har gjennomført en reise vil jeg at løsningen skal la meg evaluere hele reiseopplevelsen etter turen, slik at jeg kan bidra til kontinuerlig forbedring av tjenesten.
+Som reiseplanlegger vil jeg at løsningen skal lagre data om brukernes preferanser, slik at det kan utarbeides analyser basert på dataene som kan selges videre til relevante aktører
+
+
