@@ -1,0 +1,30 @@
+# Produksjonsnær lokal infrastruktur: rutemotor + geodatabase.
+# Oppsett: ./setup.sh  (laster Norge-ekstrakt og bygger Valhalla-tiles)
+services:
+  valhalla:
+    image: ghcr.io/gis-ops/docker-valhalla/valhalla:latest
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./valhalla_data:/custom_files
+    environment:
+      # Bygger tiles automatisk fra .osm.pbf-filer i /custom_files ved oppstart
+      - tile_urls=
+      - build_elevation=False
+      - build_admins=True
+      - build_time_zones=True
+      - serve_tiles=True
+
+  db:
+    image: postgis/postgis:16-3.4
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=reiseliv
+      - POSTGRES_USER=reiseliv
+      - POSTGRES_PASSWORD=reiseliv-dev # kun lokal utvikling
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
