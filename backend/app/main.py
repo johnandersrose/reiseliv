@@ -26,13 +26,22 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(title="Reiseliv API", version="0.1.0", lifespan=lifespan)
 
-_poi_provider = StubPoiProvider()
-
 
 def get_routing():
     if os.environ.get("ROUTING_PROVIDER", "stub") == "valhalla":
         return ValhallaRoutingProvider()
     return StubRoutingProvider()
+
+
+def _make_poi_provider():
+    if os.environ.get("POI_PROVIDER", "stub") == "postgis":
+        from .providers.postgis import PostgisPoiProvider
+
+        return PostgisPoiProvider()
+    return StubPoiProvider()
+
+
+_poi_provider = _make_poi_provider()
 
 
 def get_pois():
@@ -279,11 +288,9 @@ def put_preferences(body: PreferencesIn, db: Session = Depends(get_db),
 
 
 @app.get("/pois/search")
-def search_pois(q: str = ""):
-    ql = q.lower()
+def search_pois(q: str = "", pois=Depends(get_pois)):
     return [
         {"id": p.id, "name": p.name, "lat": p.lat, "lon": p.lon,
          "category": p.category, "price_level": p.price_level}
-        for p in _poi_provider._pois
-        if ql in p.name.lower()
+        for p in pois.search(q)
     ]

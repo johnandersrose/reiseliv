@@ -4,3 +4,5 @@ __pycache__/
 reiseliv.db
 infra/valhalla_data/
 .venv/
+node_modules/
+frontend/dist/

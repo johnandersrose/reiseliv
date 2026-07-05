@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #1c2733;
+  background: #f6f8fa;
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+header p {
+  margin: 0.25rem 0 1.5rem;
+  color: #5a6b7c;
+}
+
+.trip-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.trip-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.trip-form select,
+.trip-form input {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #c3ced8;
+  border-radius: 6px;
+  min-width: 8rem;
+}
+
+.trip-form button,
+.day-plan-header button {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: #2456a8;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+}
+
+.trip-form button:disabled,
+.day-plan-header button:disabled {
+  background: #9fb2c8;
+  cursor: default;
+}
+
+.error {
+  color: #b3261e;
+}
+
+.variant-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.card {
+  font: inherit;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-top: 4px solid #888;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.card.selected {
+  outline: 3px solid #2456a8;
+  outline-offset: 1px;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.card dl {
+  margin: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.card dl div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card dt {
+  color: #5a6b7c;
+}
+
+.card dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.budget-warning {
+  margin: 0.5rem 0 0;
+  color: #b3261e;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.map {
+  height: 380px;
+  border-radius: 10px;
+  border: 1px solid #dde4ea;
+}
+
+.day-plan {
+  margin-top: 1.5rem;
+}
+
+.day-plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day {
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.day h3 {
+  margin: 0 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.day h3 span {
+  color: #5a6b7c;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.day ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.day li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
+  border-top: 1px solid #eef2f5;
+}
+
+.day li.empty {
+  color: #8a99a8;
+  font-style: italic;
+}
+
+.stop-time {
+  font-variant-numeric: tabular-nums;
+  color: #5a6b7c;
+  width: 3.2rem;
+}
+
+.stop-kind {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #e7edf3;
+  color: #33475c;
+}
+
+.stop-lodging {
+  background: #e5e0f4;
+}
+
+.stop-food {
+  background: #f4ecdc;
+}
+
+.stop-name {
+  flex: 1;
+}
+
+.stop-actions button {
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.stop-actions button:hover {
+  opacity: 1;
+}
+
+.cost-note {
+  color: #8a99a8;
+  font-size: 0.8rem;
+}

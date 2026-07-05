@@ -76,6 +76,10 @@ class StubPoiProvider:
         path = seed_path or Path(__file__).with_name("seed_pois.json")
         self._pois = [PoiRecord(**p) for p in json.loads(path.read_text(encoding="utf-8"))]
 
+    def search(self, q: str) -> list[PoiRecord]:
+        ql = q.lower()
+        return [p for p in self._pois if ql in p.name.lower()][:25]
+
     def along_route(self, geometry, buffer_km, categories):
         hits = []
         for poi in self._pois:

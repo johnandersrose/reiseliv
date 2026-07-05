@@ -16,6 +16,7 @@ AI-drevet planlegger for bilbaserte rundreiser i Norge. Kjernesløyfen:
 | [`docs/brukerhistorier-original.txt`](docs/brukerhistorier-original.txt) | Originale brukerhistorier (ekstrahert fra *Brukerhistorier_kopi.docx*) |
 | [`spike/RESULTS.md`](spike/RESULTS.md) | Datafeasibility-spike: finnes åpne datakilder for de tre rutevariantene? **(Konklusjon: GO)** |
 | [`backend/`](backend/README.md) | FastAPI-skjelett: hele MVP-sløyfen kjører ende-til-ende med stub-ruteprovider (9 tester) |
+| [`frontend/`](frontend/README.md) | React + MapLibre: skjema → variantkort → kart → dag-for-dag-plan |
 | [`infra/`](infra/docker-compose.yml) | Valhalla + PostGIS via docker-compose; `setup.sh` laster Norge-data og bygger tiles |
 
 ## Kom i gang
@@ -38,6 +39,7 @@ Ekte rutemotor: kjør `infra/setup.sh` (lokal maskin med Docker), deretter
 - [x] Backend-skjelett: 3-varianter-sløyfen ende-til-ende med stub-providere
 - [x] Infra-oppsett for Valhalla + PostGIS (kjøres lokalt, krever Docker)
 - [x] Ruteberikelse: bom (NVDB 45), ferge og scenic-score (turistveg-match) — koblet i Valhalla-provideren; `backend/scripts/fetch_nvdb_data.py` henter ekte data lokalt
-- [ ] POI-import fra OSM til PostGIS (erstatter seed_pois.json)
-- [ ] Kjør `infra/setup.sh` + `fetch_nvdb_data.py` lokalt og valider mot ekte Valhalla
-- [ ] Auth (magic link) + frontend (React + MapLibre)
+- [x] POI-import: OSM → PostGIS (`backend/scripts/import_pois_osm.py`, tag-mapping enhetstestet) + `PostgisPoiProvider` (`POI_PROVIDER=postgis`)
+- [x] Frontend: React + MapLibre med hele 3-varianter-flyten (verifisert med skjermbilde mot kjørende backend)
+- [ ] Kjør lokalt med Docker: `infra/setup.sh`, `fetch_nvdb_data.py`, `import_pois_osm.py` — valider kjeden mot ekte Valhalla/PostGIS
+- [ ] Auth (magic link, BRUK-09) og deploy
