@@ -1,0 +1,6 @@
+[
+  {"id": "sample-sollihogda", "name": "E16 Sollihøgda (grov posisjon)", "lat": 59.96, "lon": 10.34, "takst_nok": 34},
+  {"id": "sample-hardangerbrua", "name": "Hardangerbrua (grov posisjon)", "lat": 60.44, "lon": 6.85, "takst_nok": 133},
+  {"id": "sample-oslo-vest", "name": "Bomringen Oslo vest (grov posisjon)", "lat": 59.92, "lon": 10.68, "takst_nok": 24},
+  {"id": "sample-stavanger", "name": "Bomringen Stavanger – negativ kontroll", "lat": 58.97, "lon": 5.73, "takst_nok": 26}
+]

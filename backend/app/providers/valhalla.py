@@ -1,26 +1,35 @@
 """Valhalla-basert RoutingProvider (produksjon).
 
-Skjelett: kobler mot selvhostet Valhalla (se infra/docker-compose.yml).
-Byttes inn for stub via miljøvariabelen ROUTING_PROVIDER=valhalla.
+Kobler mot selvhostet Valhalla (se infra/docker-compose.yml). Byttes inn for
+stub via miljøvariabelen ROUTING_PROVIDER=valhalla.
 
-TODO før produksjon:
-  - scenic_score: match rutegeometri mot Nasjonale turistveger-geometrien
-    (NVDB) + viewpoint-tetthet fra POI-databasen (se spike/RESULTS.md #7).
-  - toll/ferry: Valhalla gir use_tolls/use_ferry-kostnader, men kronebeløp
-    hentes fra NVDB objekttype 45 og fergesjablonger.
+Rutene berikes med bompenger (NVDB objekttype 45), fergesjablong og
+scenic-score (Nasjonale turistveger-match) via RouteEnricher — kjør
+backend/scripts/fetch_nvdb_data.py først for ekte data; ellers brukes
+sample-filene og det logges en advarsel.
 """
 from __future__ import annotations
 
 import json
+import logging
 import os
 import urllib.request
 
+from ..enrichment import RouteEnricher
 from .base import RouteCandidate
+
+logger = logging.getLogger(__name__)
 
 
 class ValhallaRoutingProvider:
-    def __init__(self, base_url: str | None = None):
+    def __init__(self, base_url: str | None = None, enricher: RouteEnricher | None = None):
         self.base_url = base_url or os.environ.get("VALHALLA_URL", "http://localhost:8002")
+        self.enricher = enricher or RouteEnricher()
+        if self.enricher.uses_sample_data():
+            logger.warning(
+                "RouteEnricher bruker sample-data; kjør "
+                "backend/scripts/fetch_nvdb_data.py for ekte NVDB-data."
+            )
 
     def candidates(self, origin, destination, waypoints):
         body = {
@@ -42,17 +51,16 @@ class ValhallaRoutingProvider:
         out = []
         for i, trip in enumerate([data["trip"], *[a["trip"] for a in data.get("alternates", [])]]):
             summary = trip["summary"]
-            out.append(
-                RouteCandidate(
-                    name=f"valhalla-{i}",
-                    geometry=_decode_polyline6(trip["legs"][0]["shape"]),
-                    km=summary["length"],
-                    drive_mins=int(summary["time"] / 60),
-                    toll_nok=0.0,   # TODO: NVDB objekttype 45
-                    ferry_nok=0.0,  # TODO: fergesjablong per samband
-                    scenic_score=0.5,  # TODO: Nasjonale turistveger-match
-                )
+            candidate = RouteCandidate(
+                name=f"valhalla-{i}",
+                geometry=_decode_polyline6(trip["legs"][0]["shape"]),
+                km=summary["length"],
+                drive_mins=int(summary["time"] / 60),
+                toll_nok=0.0,
+                ferry_nok=0.0,
+                scenic_score=0.0,
             )
+            out.append(self.enricher.enrich(candidate))
         return out
 
 

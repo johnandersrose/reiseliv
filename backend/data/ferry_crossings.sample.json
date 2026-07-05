@@ -1,0 +1,4 @@
+[
+  {"id": "sample-kvanndal-utne", "name": "Kvanndal–Utne (grov posisjon)", "lat": 60.44, "lon": 6.59, "takst_nok": 120},
+  {"id": "sample-moss-horten", "name": "Moss–Horten – negativ kontroll", "lat": 59.42, "lon": 10.54, "takst_nok": 268}
+]

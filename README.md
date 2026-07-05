@@ -37,5 +37,7 @@ Ekte rutemotor: kjør `infra/setup.sh` (lokal maskin med Docker), deretter
 - [x] Personvernnotat skrevet (utkast) — **venter juridisk gjennomgang**
 - [x] Backend-skjelett: 3-varianter-sløyfen ende-til-ende med stub-providere
 - [x] Infra-oppsett for Valhalla + PostGIS (kjøres lokalt, krever Docker)
-- [ ] Bytt stub → Valhalla: scenic-score (Nasjonale turistveger), bom (NVDB 45), POI-import til PostGIS
+- [x] Ruteberikelse: bom (NVDB 45), ferge og scenic-score (turistveg-match) — koblet i Valhalla-provideren; `backend/scripts/fetch_nvdb_data.py` henter ekte data lokalt
+- [ ] POI-import fra OSM til PostGIS (erstatter seed_pois.json)
+- [ ] Kjør `infra/setup.sh` + `fetch_nvdb_data.py` lokalt og valider mot ekte Valhalla
 - [ ] Auth (magic link) + frontend (React + MapLibre)

@@ -32,6 +32,11 @@ curl -X POST localhost:8000/trips -H 'Content-Type: application/json' -d '{
   `StubPoiProvider` byttes til PostGIS `ST_DWithin` senere.
 - `app/generator.py` – scoringsmotoren (spec kap. 3): én pipeline, tre
   målfunksjoner, grådig dagsplanlegger som aldri bryter harde begrensninger.
+- `app/enrichment.py` – ruteberikelse: bompenger (NVDB objekttype 45),
+  fergesjablong og scenic-score (andel Nasjonale turistveger +
+  viewpoint-tetthet). Ekte data hentes med `scripts/fetch_nvdb_data.py`
+  (objekttype-ID-er slås opp ved navn i datakatalogen); uten dem brukes
+  `data/*.sample.*` (grove tilnærminger for dev/test).
 - `app/main.py` – REST-endepunktene fra spec kap. 4. Auth er ikke med i
   skjelettet (én dev-bruker).
 
@@ -41,6 +46,7 @@ oppdateres de av en batchjobb mot SSB tabell 09654.
 ## Bevisste skjelett-forenklinger
 
 - Ingen auth/brukere utover dev-bruker — magic link kommer med BRUK-09.
-- `scenic_score` og bom/ferge i Valhalla-provideren er TODO (NVDB objekttype
-  45 + Nasjonale turistveger-match, se `../spike/RESULTS.md`).
+- Berikelsen bruker sample-data til `scripts/fetch_nvdb_data.py` er kjørt
+  lokalt (sandkasser når ikke NVDB); provideren logger advarsel om dette.
+- Fergetakster vedlikeholdes manuelt (ingen åpen API, se `../spike/RESULTS.md` #4).
 - Aktivitets-/overnattingspriser er sjablonger merket `is_estimate`.
